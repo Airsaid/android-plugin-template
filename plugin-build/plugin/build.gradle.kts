@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
-  compileOnly(Dependencies.ANDROID_GRADLE_PLUGIN)
+  compileOnly(PluginDependencies.ANDROID_GRADLE_PLUGIN)
 }
 
 java {
