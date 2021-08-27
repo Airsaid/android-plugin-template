@@ -1,23 +1,23 @@
 plugins {
-    kotlin("jvm")
-    id("java-gradle-plugin")
+  kotlin("jvm")
+  id("java-gradle-plugin")
+  id("com.gradle.plugin-publish")
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+  implementation(kotlin("stdlib-jdk8"))
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 gradlePlugin {
-    plugins {
-        create("com.airsaid.template.plugin") {
-            id = "com.airsaid.template.plugin"
-            implementationClass = "com.airsaid.template.plugin.TemplatePlugin"
-            version = "1.0.0"
-        }
+  plugins {
+    create(PluginConfig.ID) {
+      id = PluginConfig.ID
+      implementationClass = PluginConfig.IMPLEMENTATION_CLASS
     }
+  }
 }

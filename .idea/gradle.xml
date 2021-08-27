@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/plugin-build" />
+            <option value="$PROJECT_DIR$/plugin-build/buildSrc" />
             <option value="$PROJECT_DIR$/plugin-build/plugin" />
           </set>
         </option>
