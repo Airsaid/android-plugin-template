@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
+  compileOnly(Dependencies.ANDROID_GRADLE_PLUGIN)
 }
 
 java {
@@ -17,7 +18,16 @@ gradlePlugin {
   plugins {
     create(PluginConfig.ID) {
       id = PluginConfig.ID
+      displayName = PluginConfig.DISPLAY_NAME
+      description = PluginConfig.DESCRIPTION
       implementationClass = PluginConfig.IMPLEMENTATION_CLASS
     }
   }
+}
+
+
+pluginBundle {
+  website = PluginBundle.WEBSITE
+  vcsUrl = PluginBundle.VCS_URL
+  tags = PluginBundle.TAGS
 }
