@@ -1,4 +1,4 @@
-package com.airsaid.example
+package com.airsaid.template
 
 import org.junit.Test
 

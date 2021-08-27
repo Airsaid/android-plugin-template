@@ -1,13 +1,14 @@
 plugins {
   id("com.android.application")
   kotlin("android")
+  id("com.airsaid.template.plugin")
 }
 
 android {
   compileSdk = 31
 
   defaultConfig {
-    applicationId = "com.airsaid.example"
+    applicationId = "com.airsaid.template"
     minSdk = 21
     targetSdk = 31
     versionCode = 1

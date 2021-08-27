@@ -1,4 +1,4 @@
-package com.airsaid.example
+package com.airsaid.template
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

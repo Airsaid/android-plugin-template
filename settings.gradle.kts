@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "android-plugin-template"
 include(":app")
+includeBuild("plugin-build")
