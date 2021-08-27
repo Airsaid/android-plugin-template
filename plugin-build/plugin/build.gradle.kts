@@ -25,7 +25,6 @@ gradlePlugin {
   }
 }
 
-
 pluginBundle {
   website = PluginBundle.WEBSITE
   vcsUrl = PluginBundle.VCS_URL
