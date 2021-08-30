@@ -1,4 +1,5 @@
 plugins {
+  groovy
   kotlin("jvm")
   id("java-gradle-plugin")
   id("com.gradle.plugin-publish")
@@ -7,6 +8,9 @@ plugins {
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
   compileOnly(PluginDependencies.ANDROID_GRADLE_PLUGIN)
+  testImplementation(PluginDependencies.SPOCK)
+  testImplementation(PluginDependencies.ANDROID_GRADLE_PLUGIN)
+  testImplementation(PluginDependencies.COMMONS)
 }
 
 java {
@@ -29,4 +33,9 @@ pluginBundle {
   website = PluginBundle.WEBSITE
   vcsUrl = PluginBundle.VCS_URL
   tags = PluginBundle.TAGS
+}
+
+tasks.withType<Test>().configureEach {
+  // Using JUnitPlatform for running tests
+  useJUnitPlatform()
 }
