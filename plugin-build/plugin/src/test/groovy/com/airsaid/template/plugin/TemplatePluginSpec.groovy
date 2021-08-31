@@ -1,5 +1,6 @@
 package com.airsaid.template.plugin
 
+import groovy.transform.CompileDynamic
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
 import spock.lang.Specification
@@ -8,6 +9,7 @@ import spock.lang.Unroll
 /**
  * @author airsaid
  */
+@CompileDynamic
 class TemplatePluginSpec extends Specification {
 
   @Unroll
@@ -27,6 +29,7 @@ class TemplatePluginSpec extends Specification {
 
     then:
     result.output.contains("target: project ':app'")
+    result.output.contains("plugin isEnabled: false")
     result.task(":app:assembleDebug").outcome == TaskOutcome.SUCCESS
 
     where:

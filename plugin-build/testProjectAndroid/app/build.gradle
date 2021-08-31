@@ -4,6 +4,10 @@ plugins {
   id 'com.airsaid.template.plugin'
 }
 
+template {
+  setEnabled(false)
+}
+
 android {
   compileSdk 31
 
