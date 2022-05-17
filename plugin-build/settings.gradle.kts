@@ -2,7 +2,15 @@ pluginManagement {
   repositories {
     gradlePluginPortal()
     mavenCentral()
-    jcenter()
+  }
+}
+
+@Suppress("UnstableApiUsage")
+dependencyResolutionManagement {
+  versionCatalogs {
+    create("pluginLibs") {
+      from(files("../gradle/libs.versions.toml"))
+    }
   }
 }
 

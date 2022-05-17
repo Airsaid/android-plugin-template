@@ -1,16 +1,16 @@
 plugins {
   groovy
-  kotlin("jvm")
   id("java-gradle-plugin")
+  id("org.jetbrains.kotlin.jvm")
   id("com.gradle.plugin-publish")
 }
 
 dependencies {
-  implementation(kotlin("stdlib-jdk8"))
-  compileOnly(PluginDependencies.ANDROID_GRADLE_PLUGIN)
-  testImplementation(PluginDependencies.SPOCK)
-  testImplementation(PluginDependencies.ANDROID_GRADLE_PLUGIN)
-  testImplementation(PluginDependencies.COMMONS)
+  implementation(pluginLibs.kotlin.stdlib)
+  compileOnly(pluginLibs.android.gradle.plugin)
+  testImplementation(pluginLibs.spock)
+  testImplementation(pluginLibs.android.gradle.plugin)
+  testImplementation(pluginLibs.commonsio)
 }
 
 java {
