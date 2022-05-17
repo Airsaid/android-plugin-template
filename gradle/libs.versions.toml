@@ -12,3 +12,8 @@ androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayo
 androidx-junit = { module = "androidx.test.ext:junit", version = "1.1.2" }
 androidx-espresso = { module = "androidx.test.espresso:espresso-core", version = "3.3.0" }
 junit = { module = "junit:junit", version = "4.13.2" }
+
+[plugins]
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "android-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-plugin" }
