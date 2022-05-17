@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.5.20"
+kotlin = "1.6.21"
 android-plugin = "7.2.0"
 
 [libraries]
