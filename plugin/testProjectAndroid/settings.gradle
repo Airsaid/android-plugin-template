@@ -1,0 +1,10 @@
+pluginManagement {
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+    mavenLocal()
+  }
+}
+rootProject.name = 'testProjectAndroid'
+include ':app'

@@ -1,7 +1,7 @@
 plugins {
-  id 'com.android.application'
-  id 'kotlin-android'
-  id 'com.airsaid.template.plugin'
+  id 'com.android.application' version '7.0.1'
+  id 'org.jetbrains.kotlin.android' version '1.5.20'
+  id 'com.airsaid.template.plugin' version '1.0.0'
 }
 
 template {

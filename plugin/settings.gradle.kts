@@ -14,5 +14,5 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = ("com.airsaid.template.plugin")
-include(":plugin")
+rootProject.name = ("plugin")
+include(":template-plugin")

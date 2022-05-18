@@ -12,7 +12,6 @@ import spock.lang.Unroll
 @CompileDynamic
 class TemplatePluginSpec extends Specification {
 
-  @Unroll
   def "test the application of the plugin on Gradle #gradleVersion"() {
     given:
     def projectDir = TemplatePluginTestHelper.getTestProjectDir("testProjectAndroid")
@@ -22,7 +21,6 @@ class TemplatePluginSpec extends Specification {
         .withProjectDir(projectDir)
         .withArguments(':app:assembleDebug')
         .withGradleVersion(gradleVersion)
-        .withPluginClasspath()
         .forwardOutput()
         .withDebug(true)
         .build()
