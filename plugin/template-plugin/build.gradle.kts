@@ -4,40 +4,26 @@ plugins {
   `java-gradle-plugin`
   id("org.jetbrains.kotlin.jvm")
   id("com.gradle.plugin-publish")
+  id("com.github.gmazzo.buildconfig")
 }
 
-// fix: https://youtrack.jetbrains.com/issue/IDEA-276365
-configurations.compileOnly.configure {
-  isCanBeResolved = true
-}
+val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("pluginLibs")
+val pluginVersion: String = versionCatalog.findVersion("template").get().requiredVersion
+val pluginId: String = versionCatalog.findPlugin("template").get().get().pluginId
 
-tasks.withType<PluginUnderTestMetadata>().configureEach {
-  pluginClasspath.from(configurations.compileOnly)
-}
-
-dependencies {
-  compileOnly(gradleApi())
-  compileOnly(pluginLibs.kotlin.stdlib)
-  compileOnly(pluginLibs.android.gradle.plugin)
-
-  testImplementation(gradleTestKit())
-  testImplementation(pluginLibs.spock)
-  testImplementation(pluginLibs.commonsio)
-}
-
-tasks.named("test").configure {
-  dependsOn("publishToMavenLocal")
-}
-
-java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
+buildConfig {
+  sourceSets.getByName("test") {
+    buildConfig {
+      buildConfigField("String", "PLUGIN_VERSION", "\"${pluginVersion}\"")
+      buildConfigField("String", "PLUGIN_ID", "\"${pluginId}\"")
+    }
+  }
 }
 
 gradlePlugin {
   plugins {
     register("TemplatePlugin") {
-      id = PluginConfig.ID
+      id = pluginId
       displayName = PluginConfig.DISPLAY_NAME
       description = PluginConfig.DESCRIPTION
       implementationClass = PluginConfig.IMPLEMENTATION_CLASS
@@ -51,23 +37,44 @@ pluginBundle {
   tags = PluginBundle.TAGS
 }
 
+java {
+  sourceCompatibility = JavaVersion.VERSION_14
+  targetCompatibility = JavaVersion.VERSION_14
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+  kotlinOptions {
+    jvmTarget = "14"
+  }
+}
+
+configurations.compileOnly.configure {
+  // fix: https://youtrack.jetbrains.com/issue/IDEA-276365
+  isCanBeResolved = true
+}
+
+tasks.withType<PluginUnderTestMetadata>().configureEach {
+  pluginClasspath.from(configurations.compileOnly)
+}
+
+// Test tasks load plugin from local maven repository
+tasks.named("test").configure {
+  dependsOn("publishToMavenLocal")
+}
+
 tasks.withType<Test>().configureEach {
-  // Using JUnitPlatform for running tests
   useJUnitPlatform()
-  maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
-  doFirst {
-    logger.lifecycle("maxParallelForks for '$path' is $maxParallelForks")
-  }
   testLogging {
-    events(
-        org.gradle.api.tasks.testing.logging.TestLogEvent.STARTED,
-        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
-        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
-        org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
-    )
-    exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-    showExceptions = true
-    showCauses = true
-    showStackTraces = true
+    showStandardStreams = true
   }
+}
+
+dependencies {
+  compileOnly(gradleApi())
+  compileOnly(pluginLibs.kotlin.stdlib)
+  compileOnly(pluginLibs.android.gradle.plugin)
+
+  testImplementation(gradleTestKit())
+  testImplementation(pluginLibs.junit.jupiter)
+  testImplementation(pluginLibs.gradle.test.toolkit)
 }
