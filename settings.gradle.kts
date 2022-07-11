@@ -1,10 +1,10 @@
 pluginManagement {
-  includeBuild("./plugin")
-
+  include(":template-plugin")
   repositories {
     gradlePluginPortal()
     google()
     mavenCentral()
+    mavenLocal()
   }
 }
 

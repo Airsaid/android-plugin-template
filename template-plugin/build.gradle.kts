@@ -7,7 +7,7 @@ plugins {
   id("com.github.gmazzo.buildconfig")
 }
 
-val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("pluginLibs")
+val versionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 val pluginVersion: String = versionCatalog.findVersion("template").get().requiredVersion
 val pluginId: String = versionCatalog.findPlugin("template").get().get().pluginId
 
@@ -24,17 +24,17 @@ gradlePlugin {
   plugins {
     register("TemplatePlugin") {
       id = pluginId
-      displayName = PluginConfig.DISPLAY_NAME
-      description = PluginConfig.DESCRIPTION
-      implementationClass = PluginConfig.IMPLEMENTATION_CLASS
+      displayName = "TemplatePlugin"
+      description = "This is a plugin template plugin."
+      implementationClass = "com.airsaid.template.plugin.TemplatePlugin"
     }
   }
 }
 
 pluginBundle {
-  website = PluginBundle.WEBSITE
-  vcsUrl = PluginBundle.VCS_URL
-  tags = PluginBundle.TAGS
+  website = "https://github.com/Airsaid/android-plugin-template"
+  vcsUrl = "'https://github.com/Airsaid/android-plugin-template'"
+  tags = listOf("android", "plugin", "gradle", "template")
 }
 
 java {
@@ -71,10 +71,10 @@ tasks.withType<Test>().configureEach {
 
 dependencies {
   compileOnly(gradleApi())
-  compileOnly(pluginLibs.kotlin.stdlib)
-  compileOnly(pluginLibs.android.gradle.plugin)
+  compileOnly(libs.kotlin.stdlib)
+  compileOnly(libs.android.gradle.plugin)
 
   testImplementation(gradleTestKit())
-  testImplementation(pluginLibs.junit.jupiter)
-  testImplementation(pluginLibs.gradle.test.toolkit)
+  testImplementation(libs.junit.jupiter)
+  testImplementation(libs.gradle.test.toolkit)
 }
