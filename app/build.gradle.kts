@@ -1,7 +1,7 @@
 plugins {
   id("com.android.application")
   kotlin("android")
-  id("com.airsaid.template.plugin")
+//  id("com.airsaid.template.plugin")
 }
 
 android {

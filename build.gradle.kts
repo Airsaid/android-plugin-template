@@ -7,7 +7,7 @@ plugins {
   alias(libs.plugins.kotlin.jvm).apply(false)
   alias(libs.plugins.buildconfig).apply(false)
   alias(libs.plugins.gradle.plugin.publish).apply(false)
-  alias(libs.plugins.template).apply(false)
+//  alias(libs.plugins.template).apply(false)
 }
 
 val pluginVersion = libs.versions.template.get()
