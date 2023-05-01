@@ -23,5 +23,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android-plugin" }
 android-library = { id = "com.android.library", version.ref = "android-plugin" }
 gradle-plugin-publish = { id = "com.gradle.plugin-publish", version = "0.18.0" }
-buildconfig = { id = "com.github.gmazzo.buildconfig", version = "3.1.0" }
+buildconfig = { id = "com.github.gmazzo.buildconfig", version = "4.0.2" }
 template = { id = "com.airsaid.template.plugin", version.ref = "template" }
